@@ -66,9 +66,11 @@ class QuizAppState extends State<QuizApp> {
                     ...answers.map((answerText) => Answer(answerText, asnwer)),
                   ],
                 )
-                : Text(
-                  "Você já respondeu todas as perguntas. Obrigado pela participação",
-                  style: TextStyle(fontSize: 20),
+                : Center(
+                  child: Text(
+                    "Você já respondeu todas as perguntas. Obrigado pela participação",
+                    style: TextStyle(fontSize: 28),
+                  ),
                 ),
       ),
     );
