@@ -99,7 +99,7 @@ class QuizAppState extends State<QuizApp> {
                   questions: questions,
                   answer: answer,
                 )
-                : Result(),
+                : Result(totalScore),
       ),
     );
   }
