@@ -26,6 +26,7 @@ class Questionary extends StatelessWidget {
             : [];
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Question(questions[questionIndex]['question'] as String),
         ...answers.map(
