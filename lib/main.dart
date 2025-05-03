@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/answer.dart';
-import 'package:quiz/question.dart';
+import 'package:quiz/questionary.dart';
+import 'package:quiz/result.dart';
 
 void main() {
   runApp(QuizApp());
@@ -44,7 +44,7 @@ class QuizAppState extends State<QuizApp> {
     return questionIndex < questions.length;
   }
 
-  void asnwer() {
+  void answer() {
     setState(() {
       questionIndex++;
     });
@@ -52,26 +52,17 @@ class QuizAppState extends State<QuizApp> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> answers =
-        hasQuestion ? questions[questionIndex]['answers'] as List<String> : [];
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('Perguntas e Respostas')),
         body:
             hasQuestion
-                ? Column(
-                  children: [
-                    Question(questions[questionIndex]['question'] as String),
-                    ...answers.map((answerText) => Answer(answerText, asnwer)),
-                  ],
+                ? Questionary(
+                  questionIndex: questionIndex,
+                  questions: questions,
+                  answer: answer,
                 )
-                : Center(
-                  child: Text(
-                    "Você já respondeu todas as perguntas. Obrigado pela participação",
-                    style: TextStyle(fontSize: 28),
-                  ),
-                ),
+                : Result(),
       ),
     );
   }
