@@ -5,7 +5,7 @@ import 'package:quiz/question.dart';
 class Questionary extends StatelessWidget {
   final int questionIndex;
   final List<Map<String, Object>> questions;
-  final void Function() answer;
+  final void Function(int) answer;
 
   const Questionary({
     required this.questionIndex,
@@ -20,13 +20,20 @@ class Questionary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> answers =
-        hasQuestion ? questions[questionIndex]['answers'] as List<String> : [];
+    List<Map<String, Object>> answers =
+        hasQuestion
+            ? questions[questionIndex]['answers'] as List<Map<String, Object>>
+            : [];
 
     return Column(
       children: [
         Question(questions[questionIndex]['question'] as String),
-        ...answers.map((answerText) => Answer(answerText, answer)),
+        ...answers.map(
+          (answerItem) => Answer(
+            answerItem['text'] as String,
+            () => answer(int.parse(answerItem['score'].toString())),
+          ),
+        ),
       ],
     );
   }

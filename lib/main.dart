@@ -8,35 +8,71 @@ void main() {
 
 class QuizAppState extends State<QuizApp> {
   var questionIndex = 0;
+  var totalScore = 0;
 
   final List<Map<String, Object>> questions = const [
     {
       'question': 'Qual é a capital da França?',
-      'answers': ['Paris', 'Londres', 'Berlim', 'Roma'],
+      'answers': [
+        {'text': 'Paris', 'score': 10},
+        {'text': 'Londres', 'score': 0},
+        {'text': 'Berlim', 'score': 0},
+        {'text': 'Madrid', 'score': 0},
+      ],
     },
     {
       'question': 'Qual é a capital da Alemanha?',
-      'answers': ['Paris', 'Berlim', 'Madrid', 'Lisboa'],
+      'answers': [
+        {'text': 'Londres', 'score': 0},
+        {'text': 'Paris', 'score': 0},
+        {'text': 'Berlim', 'score': 10},
+        {'text': 'Madrid', 'score': 0},
+      ],
     },
     {
       'question': 'Qual é a capital da Espanha?',
-      'answers': ['Madrid', 'Paris', 'Lisboa', 'Roma'],
+      'answers': [
+        {'text': 'Paris', 'score': 0},
+        {'text': 'Madrid', 'score': 10},
+        {'text': 'Berlim', 'score': 0},
+        {'text': 'Londres', 'score': 0},
+      ],
     },
     {
       'question': 'Qual é a sua cor favorita?',
-      'answers': ['Vermelho', 'Azul', 'Amarelo', 'Verde'],
+      'answers': [
+        {'text': 'Vermelho', 'score': 10},
+        {'text': 'Verde', 'score': 8},
+        {'text': 'Azul', 'score': 6},
+        {'text': 'Amarelo', 'score': 4},
+      ],
     },
     {
       'question': 'Qual é o seu animal favorito?',
-      'answers': ['Cachorro', 'Gato', 'Pássaro', 'Peixe'],
+      'answers': [
+        {'text': 'Gato', 'score': 8},
+        {'text': 'Peixe', 'score': 4},
+        {'text': 'Cachorro', 'score': 10},
+        {'text': 'Pássaro', 'score': 6},
+      ],
     },
     {
       'question': 'Qual é o seu esporte favorito?',
-      'answers': ['Futebol', 'Basquete', 'Vôlei', 'Natação'],
+      'answers': [
+        {'text': 'Natação', 'score': 4},
+        {'text': 'Basquete', 'score': 8},
+        {'text': 'Futebol', 'score': 10},
+        {'text': 'Vôlei', 'score': 6},
+      ],
     },
     {
       'question': 'Qual é a sua comida favorita?',
-      'answers': ['Pizza', 'Hambúrguer', 'Sushi', 'Salada'],
+      'answers': [
+        {'text': 'Sushi', 'score': 6},
+        {'text': 'Pizza', 'score': 10},
+        {'text': 'Salada', 'score': 4},
+        {'text': 'Hambúrguer', 'score': 8},
+      ],
     },
   ];
 
@@ -44,9 +80,10 @@ class QuizAppState extends State<QuizApp> {
     return questionIndex < questions.length;
   }
 
-  void answer() {
+  void answer(int score) {
     setState(() {
       questionIndex++;
+      totalScore += score;
     });
   }
 
